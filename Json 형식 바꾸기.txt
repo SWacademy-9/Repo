@@ -1,0 +1,37 @@
+# json 공통 형식으로 바꾸기
+import json
+import os
+
+# 원본 파일 경로
+input_file_path = ''
+
+# JSON 파일 읽기
+with open(input_file_path, 'r') as file:
+    data = json.load(file)
+
+# 데이터 처리 및 형식 변환
+result = []
+for annotation in data:
+    keypoints = annotation['keypoints'][5:]  # 5번째 리스트부터 끝까지 추출
+    resolution = [, ]  # 해상도
+    action = "adress"  
+    # adress, takeback, backswing, topswing, downswing, impact, follow, finish
+    evaluation = ""  # 평가
+    source = "Youtube"  # 예시로 고정된 데이터 출처
+
+    transformed_annotation = {
+        'action': action,
+        'evaluation': evaluation,
+        'resolution': resolution,
+        'keypoints': keypoints,
+        'source': source
+    }
+    result.append(transformed_annotation)
+
+# 수정된 파일 이름 생성
+output_file_path = os.path.splitext(input_file_path)[0] + ".json"
+
+# 결과 출력 또는 저장
+output_data = result[0]
+with open(output_file_path, 'w') as file:
+    json.dump(output_data, file, indent=1)
