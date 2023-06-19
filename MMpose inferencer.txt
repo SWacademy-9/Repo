@@ -1,0 +1,3 @@
+RTMpose 추론 코드
+
+python mmpose\demo\inferencer_demo.py {$ video, image directory} --pose2d human --vis-out-dir {$ visualize directory} --pred-out-dir {$ prediction directory}
